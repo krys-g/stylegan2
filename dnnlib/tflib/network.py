@@ -12,7 +12,8 @@ import re
 import uuid
 import sys
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 from collections import OrderedDict
 from typing import Any, List, Tuple, Union
@@ -287,7 +288,12 @@ class Network:
         module = types.ModuleType(module_name)
         sys.modules[module_name] = module
         _import_module_src[module] = self._build_module_src
-        exec(self._build_module_src, module.__dict__) # pylint: disable=exec-used
+
+        # Rewrite module source for TF1/2 compatibility
+        p = re.compile('import tensorflow as tf')
+        src = p.sub('import tensorflow.compat.v1 as tf\ntf.disable_v2_behavior()', self._build_module_src)
+
+        exec(src, module.__dict__) # pylint: disable=exec-used
 
         # Locate network build function in the temporary module.
         self._build_func = util.get_obj_from_module(module, self._build_func_name)

@@ -1,6 +1,10 @@
-## StyleGAN2 &mdash; Official TensorFlow Implementation
+## StyleGAN2 &mdash; TensorFlow 2.x Implementation
 
-![Teaser image](./docs/stylegan2-teaser-1024x256.png)
+This is a fork of the official StyleGan2 repository, with minor changes for
+TensorFlow 2.x "compatibility". It relies on the built-in compatibility layer,
+so changes are minimal.
+
+Original source and documentation can be found here: https://github.com/NVlabs/stylegan2
 
 **Analyzing and Improving the Image Quality of StyleGAN**<br>
 Tero Karras, Samuli Laine, Miika Aittala, Janne Hellsten, Jaakko Lehtinen, Timo Aila<br>
@@ -36,8 +40,7 @@ For press and other inquiries, please contact Hector Marinez at [hmarinez@nvidia
 
 * Both Linux and Windows are supported. Linux is recommended for performance and compatibility reasons.
 * 64-bit Python 3.6 installation. We recommend Anaconda3 with numpy 1.14.3 or newer.
-* We recommend TensorFlow 1.14, which we used for all experiments in the paper, but TensorFlow 1.15 is also supported on Linux. TensorFlow 2.x is not supported.
-* On Windows you need to use TensorFlow 1.14, as the standard 1.15 installation does not include necessary C++ headers.
+* A TensorFlow 2.x, with support for the tensorflow.compat.v1 layer, is required.
 * One or more high-end NVIDIA GPUs, NVIDIA drivers, CUDA 10.0 toolkit and cuDNN 7.5. To reproduce the results reported in the paper, you need an NVIDIA GPU with at least 16 GB of DRAM.
 * Docker users: use the [provided Dockerfile](./Dockerfile) to build an image with the required library dependencies.
 

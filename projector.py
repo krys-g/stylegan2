@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # Copyright (c) 2019, NVIDIA Corporation. All rights reserved.
 #
 # This work is made available under the Nvidia Source Code License-NC.
@@ -5,7 +6,8 @@
 # https://nvlabs.github.io/stylegan2/license.html
 
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import dnnlib
 import dnnlib.tflib as tflib
 

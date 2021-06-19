@@ -8,13 +8,12 @@
 
 import os
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 # Silence deprecation warnings from TensorFlow 1.13 onwards
 import logging
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
-import tensorflow.contrib   # requires TensorFlow 1.x!
-tf.contrib = tensorflow.contrib
 
 from typing import Any, Iterable, List, Union
 
@@ -36,7 +35,7 @@ def is_tf_expression(x: Any) -> bool:
     return isinstance(x, (tf.Tensor, tf.Variable, tf.Operation))
 
 
-def shape_to_list(shape: Iterable[tf.Dimension]) -> List[Union[int, None]]:
+def shape_to_list(shape: Iterable[tf.compat.v1.Dimension]) -> List[Union[int, None]]:
     """Convert a Tensorflow shape to a list of ints. Retained for backwards compatibility -- use TensorShape.as_list() in new code."""
     return [dim.value for dim in shape]
 

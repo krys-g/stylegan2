@@ -8,7 +8,8 @@
 
 import platform
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 from collections import OrderedDict
 from typing import List, Union
@@ -303,7 +304,6 @@ class Optimizer:
         if not _collective_ops_warning_printed:
             print("------------------------------------------------------------------------")
             print("WARNING: Using slow fallback implementation for inter-GPU communication.")
-            print("Please use TensorFlow 1.14 on Linux for optimal training performance.")
             print("------------------------------------------------------------------------")
             _collective_ops_warning_printed = True
         for device in self._devices.values():
